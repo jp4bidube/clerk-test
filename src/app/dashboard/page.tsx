@@ -1,12 +1,6 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Dashboard to your account",
-};
 
 export default function DashboardPage() {
   const { user } = useUser();

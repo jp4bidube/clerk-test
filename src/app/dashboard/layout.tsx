@@ -1,15 +1,21 @@
-"use client";
-
 import { SignOutButton } from "@clerk/nextjs";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { Metadata } from "next";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export const metadata: Metadata = {
+  title: "Dashboard",
+  description: "Dashboard to your account",
+};
+
+export default async function DashboardLayout({
+  children,
+}: DashboardLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="container z-40 bg-background">
@@ -17,7 +23,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <nav>
             <SignOutButton>
               <Link
-                href="/login"
+                href="/"
                 className={cn(
                   buttonVariants({ variant: "secondary", size: "sm" }),
                   "px-4"

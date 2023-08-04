@@ -46,9 +46,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       if (result.status === "complete") {
         console.log(result);
         await setActive({ session: result.createdSessionId });
-        setIsLoading(false);
-
         router.push("/dashboard");
+        setIsLoading(false);
       } else {
         setIsLoading(false);
         /*Investigate why the login hasn't completed */
@@ -63,6 +62,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     } catch (error: any) {
       setIsLoading(false);
       console.error("error", error.errors[0].longMessage);
+      return toast({
+        variant: "destructive",
+        title: "Ops",
+        description: error.errors[0].longMessage,
+      });
     }
   }
 
