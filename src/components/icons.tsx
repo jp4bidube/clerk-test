@@ -21,9 +21,15 @@ import {
   SunMedium,
   Trash,
   Twitter,
+  Linkedin,
   User,
   X,
   type IconNode,
+  Brain,
+  Book,
+  Heart,
+  MessagesSquare,
+  Users2,
 } from "lucide-react";
 
 export type Icon = IconNode;
@@ -68,5 +74,11 @@ export const Icons = {
     </svg>
   ),
   twitter: Twitter,
+  linkedin: Linkedin,
   check: Check,
+  brain: Brain,
+  book: Book,
+  heart: Heart,
+  messagesSquare: MessagesSquare,
+  users: Users2,
 };

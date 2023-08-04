@@ -29,7 +29,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
   const { isLoaded, signIn, setActive } = useSignIn();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false);
   const router = useRouter();
 
   async function onSubmit(data: FormData) {
@@ -49,18 +48,20 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         await setActive({ session: result.createdSessionId });
         setIsLoading(false);
 
-        router.push("/");
-        return toast({
-          title: "Check your email",
-          description:
-            "We sent you a login link. Be sure to check your spam too.",
-        });
+        router.push("/dashboard");
       } else {
         setIsLoading(false);
         /*Investigate why the login hasn't completed */
         console.log(result);
+        return toast({
+          variant: "destructive",
+          title: "Check your email",
+          description:
+            "We sent you a login link. Be sure to check your spam too.",
+        });
       }
     } catch (error: any) {
+      setIsLoading(false);
       console.error("error", error.errors[0].longMessage);
     }
   }
@@ -80,7 +81,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              disabled={isLoading || isGitHubLoading}
+              disabled={isLoading}
               {...register("email")}
             />
             {errors?.email && (
@@ -113,35 +114,32 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In with Email
+            Entrar com e-mail
           </button>
         </div>
       </form>
-      <div className="relative">
+      {/* <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
+            Ou continuar com
           </span>
         </div>
       </div>
-      {/* <button
+      <button
         type="button"
         className={cn(buttonVariants({ variant: "outline" }))}
-        onClick={() => {
-          setIsGitHubLoading(true);
-          signIn("github");
-        }}
+        onClick={() => {}}
         disabled={isLoading || isGitHubLoading}
       >
         {isGitHubLoading ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
-          <Icons.gitHub className="mr-2 h-4 w-4" />
+          <Icons.linkedin className="mr-2 h-4 w-4" />
         )}{" "}
-        Github
+        Linkedin
       </button> */}
     </div>
   );
