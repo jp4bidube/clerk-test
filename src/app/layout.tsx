@@ -42,7 +42,7 @@ export default function RootLayout({
             fontHeading.className
           )}
         >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             {children}
             <Toaster />
           </ThemeProvider>
