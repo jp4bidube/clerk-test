@@ -9,10 +9,10 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Login",
-  description: "Login to your account",
-};
+// export const metadata: Metadata = {
+//   title: "Login",
+//   description: "Login to your account",
+// };
 
 export default function LoginPage() {
   const { isSignedIn } = useAuth();
