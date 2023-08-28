@@ -1,9 +1,27 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
+import { Crisp } from "crisp-sdk-web";
+import { useEffect } from "react";
 
 export default function DashboardPage() {
-  const { user } = useUser();
+  Crisp.configure("177b2ac2-8894-4063-9bf2-47b5aad04c2c", { autoload: true });
+  const { user, isLoaded } = useUser();
+
+  Crisp.load();
+  Crisp.session.onLoaded(() => {
+    let crispUser = Crisp.user.setEmail(
+      user?.primaryEmailAddress?.emailAddress || ""
+    );
+    Crisp.user.setNickname(user?.fullName || "");
+    Crisp.user.setAvatar(user?.imageUrl || "");
+
+    Crisp?.session?.setData({
+      user: crispUser,
+      user_id: user?.id || "123",
+      plan: "free",
+    });
+  });
 
   return (
     <>

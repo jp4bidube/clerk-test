@@ -1,10 +1,13 @@
+"use client";
 import { Metadata } from "next";
 import Link from "next/link";
 
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
+import { buttonVariants } from "@/components/ui/button";
 import { UserAuthForm } from "@/components/user-auth-form";
+import { cn } from "@/lib/utils";
+import { useAuth } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -12,6 +15,11 @@ export const metadata: Metadata = {
 };
 
 export default function LoginPage() {
+  const { isSignedIn } = useAuth();
+  const router = useRouter();
+
+  isSignedIn && router.push("/dashboard");
+
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Link
