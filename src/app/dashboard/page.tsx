@@ -2,7 +2,6 @@
 
 import { useUser } from "@clerk/nextjs";
 import { Crisp } from "crisp-sdk-web";
-import { useEffect } from "react";
 
 export default function DashboardPage() {
   Crisp.configure("177b2ac2-8894-4063-9bf2-47b5aad04c2c", { autoload: true });
