@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useAuth, useClerk, useUser } from "@clerk/nextjs";
 import { Crisp } from "crisp-sdk-web";
 import { LogOut, Settings } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -18,6 +18,7 @@ import {
 export function UserProfile() {
   const { user } = useUser();
   const { signOut } = useAuth();
+  const { redirectToUserProfile } = useClerk();
 
   function handleSignOut() {
     signOut();
@@ -54,7 +55,10 @@ export function UserProfile() {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem className="flex gap-4">
+          <DropdownMenuItem
+            className="flex gap-4"
+            onClick={redirectToUserProfile}
+          >
             <Settings className="text-muted-foreground" size={16} />
             <p className="text-xs leading-none text-muted-foreground">
               Gerenciar conta

@@ -4,8 +4,8 @@ import { useUser } from "@clerk/nextjs";
 import { Crisp } from "crisp-sdk-web";
 
 export default function DashboardPage() {
-  Crisp.configure("177b2ac2-8894-4063-9bf2-47b5aad04c2c", { autoload: true });
-  const { user, isLoaded } = useUser();
+  Crisp.configure("16d9af53-c659-44c5-bec4-a7284327701c", { autoload: true });
+  const { user } = useUser();
 
   Crisp.load();
   Crisp.session.onLoaded(() => {
